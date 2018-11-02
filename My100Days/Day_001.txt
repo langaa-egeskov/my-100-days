@@ -1,0 +1,14 @@
+Day_001 
+Friday, 11/02/2018
+
+Based on Talk Python/ PyBites 100 days of Code Course
+https://github.com/talkpython/100daysofcode-with-python-course/tree/master/days/01-03-datetimes
+
+Day N: Learn the basics of datetime and date
+
+A super basic day to get you started. Watch Learning datetime and date and Calculating time with datetime timedelta.
+
+After watching the videos, use your Python shell to play around with some timestamp calculations as per the content in the videos.
+
+Also initialized git repository
+Created .gitignore file
