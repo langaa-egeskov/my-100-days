@@ -2,7 +2,7 @@ Day_001
 Friday, 11/02/2018
 
 Based on Talk Python/ PyBites 100 days of Code Course
-https://github.com/talkpython/100daysofcode-with-python-course/tree/master/days/01-03-datetimes
+https://github.com/talkpython/100daysofcode-with-python-course/tree/master/days/01-03-datetimesusi
 
 Day N: Learn the basics of datetime and date
 
