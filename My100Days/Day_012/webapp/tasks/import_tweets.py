@@ -7,9 +7,9 @@ import sys
 
 import tweepy
 
-sys.path.append(os.path.join.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from tips import add_tips, truncate_tables, add_hastags
+from tips import add_tips, get_tips, truncate_tables, add_hashtags
 
 CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
 CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
@@ -18,7 +18,7 @@ ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
 
 TWITTER_ACCOUNT = os.environ.get('PYTIP_APP_TWITTER_ACCOUNT') or 'python_tip'
 EXCLUDE_PYTHON_HASHTAG = True 
-TAG = re.complile(r'#([a-ax0-9]{3,})')  #a regular exp obj 
+TAG = re.compile(r'#([a-z0-9]{3,})')  #a regular exp obj 
 
 def _get_twitter_api_session():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -27,12 +27,12 @@ def _get_twitter_api_session():
 
 def get_tweets(screen_name = TWITTER_ACCOUNT):
     api = _get_twitter_api_session()
-    return tweepy.Cursor(api.user_tieline, 
+    return tweepy.Cursor(api.user_timeline, 
                          screen_name = screen_name,
                          exclude_replies=True,
                          include_rts=False)
 
-def get_hastag_counter(tips):
+def get_hashtag_counter(tips):
     blob = ' '.join(t.text.lower() for t in tips)
     cnt = Counter(TAG.findall(blob))
 
@@ -44,12 +44,12 @@ def get_hastag_counter(tips):
 def import_tweets(tweets=None):
     if tweets is None:
         tweets = get_tweets(screen_name)
-    add_timps(tweets)
+    add_tips(tweets)
 
-def import__hashtags():
+def import_hashtags():
     tips = get_tips()
-    hashtags_cnt = get_hastag_counter(tips)
-    add_hastags(hashtags_cnt)
+    hashtags_cnt = get_hashtag_counter(tips)
+    add_hashtags(hashtags_cnt)
 
 if __name__ == '__main__':
     try:

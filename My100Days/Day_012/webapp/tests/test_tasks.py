@@ -4,7 +4,7 @@ from tasks import get_hashtag_counter
 
 tip = namedtuple('Tip', 'text')
 
-def test_get_hastag_counter():
+def test_get_hashtag_counter():
     blob =  '''a lot of tweets with #jupyter hashtags, some #python, more
               #itertools, ah and of course lot of #numpy #NUMpy #NumPY
               #pandas is our favorite we got tons of that #pandas #pandas
@@ -13,7 +13,7 @@ def test_get_hastag_counter():
     tips = [tip(text=t) for t in tips]
     expected = Counter({'pandas': 5, 
                         'numpy': 3,
-                        'jupyter': 1,
+                        'jupyter': 2,
                         'itertools':1,
                         'python3': 1})
-    assert get_hastag_counter(tips) == expected
+    assert get_hashtag_counter(tips) == expected

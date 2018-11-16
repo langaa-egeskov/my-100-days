@@ -2,7 +2,7 @@ import os
 
 from bottle import route, run, request, static_file, view
 
-from tips import get_hastags, get_tips
+from tips import get_hashtags, get_tips
 
 @route('/static/<filename:path>')
 def send_static(filename):

@@ -12,8 +12,7 @@ VALID_TAG = re.compile(r'^[a-z0-9]+$')
 def _create_session():
     db_url = environ.get('DATABASE_URL')
 
-    if 
-    'pytest' in sys.argv[0]:
+    if 'pytest' in sys.argv[0]:
         db_url += '_test'
 
     if not db_url:

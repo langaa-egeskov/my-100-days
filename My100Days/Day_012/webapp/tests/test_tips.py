@@ -46,7 +46,7 @@ def test_get_hashtags(db_setup):
     assert len(hashtags) == 3
     assert hashtags[0].name == 'jupyter'
     assert hashtags[0].count == 2
-    assert hastags[-1].name == 'selfpromo'
+    assert hashtags[-1].name == 'selfpromo'
     assert hashtags[-1].count == 1
 
 def test_add_hashtags(db_setup):
