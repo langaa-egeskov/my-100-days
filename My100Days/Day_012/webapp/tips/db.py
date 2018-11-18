@@ -1,4 +1,6 @@
-from os import environ
+import os
+import psycopg2
+
 import re
 import sys
 
@@ -10,7 +12,8 @@ from .models import Base, Hashtag, Tip
 VALID_TAG = re.compile(r'^[a-z0-9]+$')
 
 def _create_session():
-    db_url = environ.get('DATABASE_URL')
+    db_url = os.environ.get('DATABASE_URL')
+    conn = psycopg2.connect(db_url, sslmode='require')
 
     if 'pytest' in sys.argv[0]:
         db_url += '_test'
