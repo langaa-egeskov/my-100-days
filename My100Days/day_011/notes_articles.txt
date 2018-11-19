@@ -1,0 +1,29 @@
+Bob Belderbos Vim tricks
+
+Resources
+- from his blog: Books, Learning vi and Vim; Hacking Vim
+- Destroy all software screen casts
+- $vimtutor
+- also I have a video course which I could watch again (time)
+
+from the video
+ctrl+z = push program to background
+fg = pull it back
+
+vim -O file1 file2 
+opens files in vertical panes
+
+rewatch to get mappings he uses for vimrc
+he uses a lot of mappings
+
+Bash
+alias pvenv = ‘virtualenv -p /path/to/anaconda/python venv’
+but dont make it an alias until you learn it
+
+alias ae = ‘source venv/bin/activate’
+
+In general, if you would add your object to a builtin (int, str, …) the __add__ method of the builtin wouldn’t know anything about your object. In that case you need to implement the reverse add method (__radd__) as well. 
+
+http://www.marinamele.com/2014/04/modifying-add-method-of-python-class.html
+
+https://dbader.org/blog/python-dunder-methods
