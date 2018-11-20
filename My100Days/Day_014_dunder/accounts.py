@@ -3,6 +3,7 @@
 
 from functools import total_ordering
 
+
 class Account:
     """A simple account class"""
 
@@ -25,7 +26,6 @@ class Account:
     def __repr__(self):
         return 'Account({!r}, {!r})'.format(self.owner, self.amount)
 
-
     def __str__(self):
         return ('{} of {} with starting amount: {}'
                 .format(__class__.__name__, self.owner, self.amount))
@@ -35,27 +35,25 @@ class Account:
             raise ValueError('please use value of type int for amount')
         self._transactions.append(amount)
 
-
     @property
     def balance(self):
         return self.amount + sum(self._transactions)
 
-
 # why is sublime behaving so funny when you type property or class
+
     def __len__(self):
         return len(self._transactions)
-
 
     def __getitem__(self, position):
         return self._transactions[position]
 
-
 # in the past I used __iter__ for iteration rather than __get_item__
+
     def __reversed__(self):
         return self[::-1]
 
-
 # need to read on functools total_ordering decorator
+
     @total_ordering
     def __eq__(self, other):
         return self.balance == other.balance
@@ -63,20 +61,43 @@ class Account:
     def __lt__(self, other):
         return self.balance < other.balance
 
-
 # use addition to represent accounts merging
+
     def __add__(self, other):
         owner = self.owner + other.owner
         start_amount = self.balance + other.balance
-        acc =  Account(owner, start_amount)
+        acc = Account(owner, start_amount)
         for t in list(self) + list(other):
             acc.add_transaction(t)
         return acc
 
-# In general, if you would add your object to a 
-# builtin (int, str, …) the __add__ method of the 
-# builtin wouldn’t know anything about your object. 
-# In that case you need to implement the reverse 
-# add method (__radd__) as well.  
-# http://www.marinamele.com/2014/04/modifying-add-method-of-python-class.html      
+# In general, if you would add your object to a
+# builtin (int, str, …) the __add__ method of the
+# builtin wouldn’t know anything about your object.
+# In that case you need to implement the reverse
+# add method (__radd__) as well.
+# http://www.marinamele.com/2014/04/modifying-add-method-of-python-class.html
 
+    def __call__(self):
+        print('Start amount: {}'.format(self.amount))
+        print('Transactions: ')
+        for transaction in self:
+            print(transaction)
+        print('\nBalance: {}'.format(self.balance))
+
+# Context Manager Support and the With Statement
+
+    def __enter__(self):
+        print('ENTER WITH: Making backup of transactions for rollback')
+        self._copy_transactions = list(self._transactions)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('EXIT WITH:', end=' ')
+        if exc_type:
+            self._tranactions = self._copy_transactions
+            print('Rolling back to previous transactions')
+            print('Transaction resulted in {} ({})'.format(
+                exc_type.__name__, exc_val))
+        else:
+            print('Transaction OK')
