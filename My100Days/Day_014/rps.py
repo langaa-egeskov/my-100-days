@@ -38,7 +38,7 @@ def get_player1_throw(throws):
     if pick not in ['r', 'p', 's']:
         print("""** Please enter a single letter: 'r' for rock, 'p' for paper,
                       or 's' for scissiors **""")
-        return get_player1_throw()
+        return get_player1_throw(throws)
     elif pick == 'r':
         return throws['Rock']
     elif pick == 'p':
@@ -50,7 +50,8 @@ def get_player1_throw(throws):
 def game_loop(player1, player2, throws):
     count = 1
     decisive_rounds = 0
-    while decisive_rounds < 4:
+    winner=Player('')
+    while decisive_rounds < 3 and winner.wins<2:
         player2_throw = random.choice([throw for throw in throws.values()])
         player1_throw = get_player1_throw(throws)
 
