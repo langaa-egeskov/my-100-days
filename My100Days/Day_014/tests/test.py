@@ -27,14 +27,15 @@ def test_Player():
     player.wins += 1
     assert player.wins == 1
 
-def test_print_header():
+def test_print_header():  #capfd
     pass
 
 def build_3_possible_throws():
     pass
 
+@patch("builtins.input", side_effect = ["Harry the Great  "])
 def get_player1_name():
-    pass
+    assert player1.name == "Harry the Great"
 
 def get_player1_throw():
     pass
