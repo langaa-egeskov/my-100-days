@@ -1,5 +1,5 @@
-from throws import Throw
-from players import Player
+from rps.throws import Throw
+from rps.players import Player
 import random
 
 
@@ -16,6 +16,7 @@ def print_header():
     print('--------------------------------------------------')
     print('               Rock, Paper, Scissors              ')
     print('--------------------------------------------------')
+    return
 
 
 def build_3_possible_throws():
@@ -35,7 +36,7 @@ def get_player1_throw(throws):
     pick = input('Pick [r]ock, [p]aper, or [s]cissors: ')
     print()
 
-    if pick not in ['r', 'p', 's']:
+    if pick not in ['r', 'p', 's'] or pick is None:
         print("""** Please enter a single letter: 'r' for rock, 'p' for paper,
                       or 's' for scissiors **""")
         return get_player1_throw(throws)
@@ -89,7 +90,6 @@ def game_loop(player1, player2, throws):
     print(f'{overall_winner.name} is the winner!')
     print(('{0} won {1} out of {2} rounds that did not end in tie'
            .format(overall_winner.name, overall_winner.wins, decisive_rounds)))
-
 
 if __name__ == '__main__':
     main()
