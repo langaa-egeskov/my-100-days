@@ -37,8 +37,8 @@ def get_player1_throw(throws):
     print()
 
     if pick not in ['r', 'p', 's'] or pick is None:
-        print("""** Please enter a single letter: 'r' for rock, 'p' for paper,
-                      or 's' for scissiors **""")
+        print("** Please enter a single letter: " +
+               "'r' for rock, 'p' for paper, or 's' for scissiors **")
         return get_player1_throw(throws)
     elif pick == 'r':
         return throws['Rock']
@@ -90,6 +90,5 @@ def game_loop(player1, player2, throws):
     print(f'{overall_winner.name} is the winner!')
     print(('{0} won {1} out of {2} rounds that did not end in tie'
            .format(overall_winner.name, overall_winner.wins, decisive_rounds)))
-
 if __name__ == '__main__':
     main()
