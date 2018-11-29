@@ -1,8 +1,17 @@
-from .context import rps15
-from rps15.throws import Throw
-from rps15.players import Player
-from rps15.rps15 import build_throws, get_player1_name, get_player1_throw
-from rps15.rps15 import print_header, player_rounds, get_random_throw
+# -*- coding: utf-8 -*-
+
+from rps15 import (
+    Player,
+    Throw,
+    bt_df,
+    print_header,
+    build_throws,
+    get_player1_name,
+    get_random_throw,
+    get_player1_throw,
+    player_rounds,
+    game
+)
 import pytest
 import pandas as pd
 from unittest.mock import patch
@@ -15,8 +24,8 @@ from unittest.mock import patch
 # link = 'https://github.com/cod3monk3y/' + '
 #        'PyImports/blob/master/myimports/tests/test_abs.py'
 
-path_to_csv = r'../rps15/battle-table.csv'
-bt_df = pd.read_csv(path_to_csv, index_col = 0)
+#path_to_csv = r'../rps15/battle-table.csv'
+#bt_df = pd.read_csv(path_to_csv, index_col = 0)
 
 @pytest.fixture()
 def throws():
@@ -41,4 +50,5 @@ def throw_2_letter(throw_proper_names):
 def throw_2_letter_lower(throw_proper_names):
     return [name[:2].lower for name in throw_proper_names]
 
-    
+if __name__ == '__main__':
+    main()

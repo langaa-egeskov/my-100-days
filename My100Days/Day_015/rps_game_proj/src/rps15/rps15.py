@@ -1,20 +1,38 @@
-from rps15.throws import Throw
-from rps15.players import Player
+import os
 import pandas as pd
 import random
 
-path_to_csv = r'../rps15/battle-table.csv'
+# Read in the csv file
+dir_name = os.path.dirname(os.path.realpath(__file__))
+path_to_csv = dir_name + r'/battle-table.csv'
 bt_df = pd.read_csv(path_to_csv, index_col = 0)
 
-def main():
-    print_header()
-    throws = build_throws(bt_df)  #battle-table dataframe
-    name = get_player1_name()
-    player1 = Player(name)
-    player2 = Player('Computer')
-    player_rounds(player1, player2, throws)
 
+# Define Our Classes
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.wins = 0
+    
+    def __repr__(self):
+        return f'Player({self.name})'
 
+class Throw:
+
+    def __init__(self, name, defeated_throws):
+        self.name = name
+        self.defeated_throws = defeated_throws
+
+    def can_defeat(self, throw):
+        if throw.name in self.defeated_throws:
+            return True
+        else:
+            return False
+        
+    def __repr__(self):
+        return f'Throw({self.name}, {self.defeated_throws})'
+
+## Define our Functions
 def print_header():
     print('--------------------------------------------------')
     print('        15 Way: Rock, Paper, Scissors             ')
@@ -128,5 +146,15 @@ def player_rounds(player1, player2, throws):
     print(('{0} won {1} out of {2} rounds that did not end in tie'
            .format(overall_winner.name, overall_winner.wins, decisive_rounds)))
 
+
+def game():
+    print_header()
+    throws = build_throws(bt_df)  #battle-table dataframe
+    name = get_player1_name()
+    player1 = Player(name)
+    player2 = Player('Computer')
+    player_rounds(player1, player2, throws)
+
+
 if __name__ == '__main__':
-    main()
+    game()
