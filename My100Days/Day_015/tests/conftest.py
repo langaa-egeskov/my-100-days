@@ -1,7 +1,8 @@
-import rps15
-from rps15.rps15 import build_throws
+from .context import rps15
 from rps15.throws import Throw
 from rps15.players import Player
+from rps15.rps15 import build_throws, get_player1_name, get_player1_throw
+from rps15.rps15 import print_header, player_rounds, get_random_throw
 import pytest
 import pandas as pd
 from unittest.mock import patch
@@ -13,7 +14,9 @@ from unittest.mock import patch
 # TODO check out the link
 # link = 'https://github.com/cod3monk3y/' + '
 #        'PyImports/blob/master/myimports/tests/test_abs.py'
-bt_df = pd.read_csv('../rps15/battle-table.csv', index_col = 0)
+
+path_to_csv = r'../rps15/battle-table.csv'
+bt_df = pd.read_csv(path_to_csv, index_col = 0)
 
 @pytest.fixture()
 def throws():

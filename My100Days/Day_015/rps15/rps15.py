@@ -3,7 +3,8 @@ from rps15.players import Player
 import pandas as pd
 import random
 
-bt_df = pd.read_csv('battle-table.csv', index_col = 0)
+path_to_csv = r'../rps15/battle-table.csv'
+bt_df = pd.read_csv(path_to_csv, index_col = 0)
 
 def main():
     print_header()
