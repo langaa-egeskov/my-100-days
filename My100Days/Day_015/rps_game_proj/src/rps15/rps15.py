@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import random
+from collections import OrderedDict
 
 # Read in the csv file
 dir_name = os.path.dirname(os.path.realpath(__file__))
@@ -45,7 +46,7 @@ def build_throws(bt_df):
     '''
     win = 'win'
 
-    can_defeat_dict = {}
+    can_defeat_dict = OrderedDict()
     for attacker in bt_df.index:
         can_defeat_list = []
         for opponent in bt_df.columns:
