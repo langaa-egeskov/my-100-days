@@ -1,11 +1,12 @@
-from throws import Throw
-from players import Player
+from rps15.throws import Throw
+from rps15.players import Player
 import pandas as pd
 import random
 
+bt_df = pd.read_csv('battle-table.csv', index_col = 0)
+
 def main():
     print_header()
-    bt_df = pd.read_csv('battle-table.csv', index_col = 0)
     throws = build_throws(bt_df)  #battle-table dataframe
     name = get_player1_name()
     player1 = Player(name)
