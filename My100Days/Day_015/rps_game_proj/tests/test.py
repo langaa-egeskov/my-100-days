@@ -93,8 +93,8 @@ def test_get_player1_throw_2_letter_lowere(throws, a_throw, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda x : a_throw.name[:2].lower())
     assert equivalent_throw(get_player1_throw(throws), a_throw)
     
-
-def test_player_rounds():
+# Need to supply input and mock player2 throw
+def test_player_rounds(Player('Zeke the Wizard'), Player('Computer'), throws):
     pass
 
 
