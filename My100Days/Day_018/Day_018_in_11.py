@@ -35,7 +35,6 @@ def gen_files1(pat=None):
             if match:
                 yield os.path.join(dirpath, filename)
 
-print(len(list(gen_files1())))
 
 def gen_files2(pat=None):
     if pat == None:
@@ -59,8 +58,6 @@ def gen_lines(files):
             for line in f:
                 yield line
 
-files = gen_files1()
-lines = gen_lines(files)
 
 def gen_grep(lines, pattern):
     for line in lines:
@@ -68,20 +65,21 @@ def gen_grep(lines, pattern):
         if match:
             yield match.group(2)
 
-grepped = gen_grep(lines, pattern)
 
 def gen_count(grepped):
-    pass
-
-
-for item in grepped:
+    count_dict = {}
+    for item in sorted(list(grepped), reverse=True):
+        count_dict.setdefault(item, 0)
+        count_dict[item] += 1
+    count_list = sorted([(item, count) for item, count in count_dict.items()], 
+           key=lambda x: x[1], reverse=True)
+    for tuple_ in count_list:
+        yield (f'{tuple_[0]:10} {tuple_[1]:10}')
 
 
 if __name__ == "__main__":
-    # call the generators, passing one to the other
-    #files = gen_files1()
-    #lines = gen_lines(files)
-    #grep = gen_grep(lines, pattern)
-    #print(list(grep))
-    # etc
-
+    files = gen_files1()
+    lines = gen_lines(files)
+    grepped = gen_grep(lines, pattern)
+    for item in gen_count(grepped):
+        print(item)
