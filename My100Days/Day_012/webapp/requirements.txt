@@ -4,7 +4,7 @@ chardet==3.0.4
 idna==2.6
 oauthlib==2.0.6
 psycopg2==2.7.3.2
-py==1.4.34
+py==1.10.0
 PySocks==1.6.8
 pytest==3.2.3
 requests==2.20.1
